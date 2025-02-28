@@ -18,4 +18,11 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+// Ensure indexes are created
+User.on('index', error => {
+  if (error) {
+    console.error('Indexes could not be created:', error);
+  }
+});
+
 module.exports = User;
